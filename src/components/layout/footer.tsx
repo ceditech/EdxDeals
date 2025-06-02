@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram, Linkedin, ShoppingCart, MoveUpRight } from 'lucide-react';
 import { LanguageSwitcher } from '@/components/shared/language-switcher';
-import { AccessibilityToolbar } from '@/components/shared/accessibility-toolbar';
+import Image from 'next/image';
 
 const footerLinks = {
   company: [
@@ -27,6 +27,7 @@ const socialLinks = [
   { href: '#', icon: Instagram, label: 'Instagram' },
   { href: '#', icon: Linkedin, label: 'LinkedIn' },
 ];
+import { AccessibilityToolbar } from '@/components/shared/accessibility-toolbar';
 
 export default function Footer() {
   return (
@@ -35,10 +36,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <Link href="/" className="flex items-center space-x-2 mb-4">
-              <div className="relative h-8 w-8 text-primary">
-                <ShoppingCart className="h-full w-full" />
-                <MoveUpRight className="absolute top-1/2 left-1/2 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 text-white" strokeWidth={3}/>
-              </div>
+              <Image
+ src="/images/FluxiCart-logo.png"
+ alt="FluxiCart Logo"
+ width={32}
+ height={32}
+ className="h-8 w-8"
+ />
               <div className="flex flex-col">
                 <span className="font-headline text-3xl font-bold text-foreground">FluxiCart</span>
                 <span className="text-sm text-muted-foreground -mt-1">by Edxstore LLC</span>

@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import { Menu, Search, ShoppingCart, UserCircle, MoveUpRight } from 'lucide-react';
+import { Menu, Search, ShoppingCart, UserCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import Image from 'next/image';
 import { LanguageSwitcher } from '@/components/shared/language-switcher';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Input } from '@/components/ui/input';
 
 const navLinks = [
   { href: '/shop', label: 'Shop' },
@@ -17,10 +18,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <div className="relative h-7 w-7 text-primary">
-            <ShoppingCart className="h-full w-full" />
-            <MoveUpRight className="absolute top-1/2 left-1/2 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 text-white" strokeWidth={3}/>
-          </div>
+          <Image src="/images/FluxiCart-logo.png" alt="FluxiCart Logo" width={28} height={28} />
           <div className="flex flex-col">
             <span className="font-headline text-2xl font-bold text-foreground">FluxiCart</span>
             <span className="text-xs text-muted-foreground -mt-1">by Edxstore LLC</span>
@@ -72,10 +70,7 @@ export default function Header() {
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col space-y-4 pt-8">
                   <Link href="/" className="flex items-center space-x-2 mb-4">
-                    <div className="relative h-7 w-7 text-primary">
-                      <ShoppingCart className="h-full w-full" />
-                      <MoveUpRight className="absolute top-1/2 left-1/2 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 text-white" strokeWidth={3}/>
-                    </div>
+                    <Image src="/images/FluxiCart-logo.png" alt="FluxiCart Logo" width={28} height={28} />
                     <div className="flex flex-col">
                       <span className="font-headline text-2xl font-bold text-foreground">FluxiCart</span>
                       <span className="text-xs text-muted-foreground -mt-1">by Edxstore LLC</span>
