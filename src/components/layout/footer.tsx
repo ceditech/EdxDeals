@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, ShoppingCart, MoveUpRight } from 'lucide-react';
 import { LanguageSwitcher } from '@/components/shared/language-switcher';
 import { AccessibilityToolbar } from '@/components/shared/accessibility-toolbar';
 
@@ -35,10 +35,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <Link href="/" className="flex items-center space-x-2 mb-4">
-               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 text-primary">
-                 <path d="M12.0006 18.26L4.94715 22.2082L6.52248 14.2799L0.587891 8.7918L8.61493 7.84006L12.0006 0.5L15.3862 7.84006L23.4132 8.7918L17.4787 14.2799L19.054 22.2082L12.0006 18.26Z" />
-               </svg>
-              <span className="font-headline text-3xl font-bold text-primary">FluxiCart</span>
+              <div className="relative h-8 w-8 text-primary">
+                <ShoppingCart className="h-full w-full" />
+                <MoveUpRight className="absolute top-1/2 left-1/2 h-3/5 w-3/5 -translate-x-1/2 -translate-y-1/2 text-white" strokeWidth={3}/>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-headline text-3xl font-bold text-foreground">FluxiCart</span>
+                <span className="text-sm text-muted-foreground -mt-1">by Edxstore LLC</span>
+              </div>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
               Your one-stop shop for everything amazing. Discover quality, style, and innovation.
@@ -46,7 +50,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-3">Company</h3>
+            <h3 className="font-headline text-lg font-semibold mb-3 text-foreground">Company</h3>
             <ul className="space-y-2">
               {footerLinks.company.map(link => (
                 <li key={link.label}>
@@ -59,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-3">Support</h3>
+            <h3 className="font-headline text-lg font-semibold mb-3 text-foreground">Support</h3>
             <ul className="space-y-2">
               {footerLinks.support.map(link => (
                 <li key={link.label}>
@@ -72,7 +76,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-headline text-lg font-semibold mb-3">Legal</h3>
+            <h3 className="font-headline text-lg font-semibold mb-3 text-foreground">Legal</h3>
             <ul className="space-y-2">
               {footerLinks.legal.map(link => (
                 <li key={link.label}>
