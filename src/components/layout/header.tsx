@@ -17,12 +17,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="mr-6 flex items-center space-x-2">
-          <Image src="/images/FluxiCart-logo.png" alt="FluxiCart Logo" width={28} height={28} />
-          <div className="flex flex-col">
-            <span className="font-headline text-2xl font-bold text-foreground">FluxiCart</span>
-            <span className="text-xs text-muted-foreground -mt-1">by Edxstore LLC</span>
-          </div>
+        <Link href="/" className="mr-6 flex items-center">
+          <Image src="/images/FluxiCart-logo.png" alt="FluxiCart Logo" width={40} height={40} />
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -69,12 +65,8 @@ export default function Header() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col space-y-4 pt-8">
-                  <Link href="/" className="flex items-center space-x-2 mb-4">
-                    <Image src="/images/FluxiCart-logo.png" alt="FluxiCart Logo" width={28} height={28} />
-                    <div className="flex flex-col">
-                      <span className="font-headline text-2xl font-bold text-foreground">FluxiCart</span>
-                      <span className="text-xs text-muted-foreground -mt-1">by Edxstore LLC</span>
-                    </div>
+                  <Link href="/" className="flex items-center mb-4">
+                    <Image src="/images/FluxiCart-logo.png" alt="FluxiCart Logo" width={40} height={40} />
                   </Link>
                   <div className="relative mb-4 sm:hidden">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

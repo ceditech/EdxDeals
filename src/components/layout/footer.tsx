@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Linkedin, ShoppingCart, MoveUpRight } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'; // Removed ShoppingCart, MoveUpRight as they are not used here
 import { LanguageSwitcher } from '@/components/shared/language-switcher';
 import Image from 'next/image';
+import { AccessibilityToolbar } from '@/components/shared/accessibility-toolbar';
 
 const footerLinks = {
   company: [
@@ -27,7 +28,6 @@ const socialLinks = [
   { href: '#', icon: Instagram, label: 'Instagram' },
   { href: '#', icon: Linkedin, label: 'LinkedIn' },
 ];
-import { AccessibilityToolbar } from '@/components/shared/accessibility-toolbar';
 
 export default function Footer() {
   return (
@@ -35,18 +35,13 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
-            <Link href="/" className="flex items-center space-x-2 mb-4">
+            <Link href="/" className="flex items-center mb-4">
               <Image
- src="/images/FluxiCart-logo.png"
- alt="FluxiCart Logo"
- width={32}
- height={32}
- className="h-8 w-8"
- />
-              <div className="flex flex-col">
-                <span className="font-headline text-3xl font-bold text-foreground">FluxiCart</span>
-                <span className="text-sm text-muted-foreground -mt-1">by Edxstore LLC</span>
-              </div>
+                src="/images/FluxiCart-logo.png"
+                alt="FluxiCart Logo"
+                width={32}
+                height={32}
+              />
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
               Your one-stop shop for everything amazing. Discover quality, style, and innovation.
