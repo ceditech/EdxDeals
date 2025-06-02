@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -26,7 +27,7 @@ export default function AiAssistantWidget() {
     setIsClient(true);
     // Load initial greeting message
     if (messages.length === 0) {
-       setMessages([{ id: 'init', text: "Hello! How can I help you today?", sender: 'ai', timestamp: new Date() }]);
+       setMessages([{ id: 'init', text: "Hello!, I am Fluxi, how can I help you today?", sender: 'ai', timestamp: new Date() }]);
     }
   }, []);
 
@@ -49,7 +50,7 @@ export default function AiAssistantWidget() {
     setTimeout(() => {
       const aiResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: `I've received your message: "${inputValue}". I'm still learning, but I'll do my best to assist!`,
+        text: `I've received your message: "${inputValue}". I'm Fluxi, and I'll do my best to assist!`,
         sender: 'ai',
         timestamp: new Date(),
       };
@@ -80,7 +81,7 @@ export default function AiAssistantWidget() {
           <CardHeader className="bg-primary text-primary-foreground p-4 flex flex-row items-center justify-between">
             <div className="flex items-center gap-2">
                 <Bot className="h-6 w-6"/>
-                <CardTitle className="text-lg font-headline">AI Assistant</CardTitle>
+                <CardTitle className="text-lg font-headline">Fluxi</CardTitle>
             </div>
             <Button variant="ghost" size="icon" onClick={toggleOpen} className="text-primary-foreground hover:bg-primary/80 h-8 w-8">
                 <X className="h-5 w-5"/>
