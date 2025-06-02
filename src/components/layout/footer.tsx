@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'; // Removed ShoppingCart, MoveUpRight as they are not used here
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { LanguageSwitcher } from '@/components/shared/language-switcher';
 import Image from 'next/image';
 import { AccessibilityToolbar } from '@/components/shared/accessibility-toolbar';
@@ -35,12 +35,12 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
-            <Link href="/" className="flex items-center mb-4">
+            <Link href="/" className="inline-block mb-4">
               <Image
                 src="/images/FluxiCart-logo.png"
                 alt="FluxiCart Logo"
-                width={32}
-                height={32}
+                width={120}
+                height={30}
               />
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
