@@ -12,7 +12,7 @@ export function FeaturedProducts() {
         <ScrollArea className="w-full whitespace-nowrap rounded-md">
           <div className="flex w-max space-x-4 pb-4">
             {mockFeaturedProducts.map((product) => (
-              <div key={product.id} className="w-[280px] md:w-[300px]">
+              <div key={product.id} className="w-[250px] sm:w-[280px] lg:w-[300px]">
                  <ProductCard product={product} />
               </div>
             ))}

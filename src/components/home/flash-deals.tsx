@@ -95,7 +95,7 @@ export function FlashDeals() {
         {currentDealTimeLeft && (
           <div className="mb-6 p-4 bg-background/20 backdrop-blur-sm rounded-lg shadow-md text-center">
             <p className="text-sm font-medium mb-1">Deal Ends In:</p>
-            <div className="text-3xl md:text-4xl font-bold font-mono tracking-tight">
+            <div className="text-2xl md:text-4xl font-bold font-mono tracking-tight">
               <span>{String(currentDealTimeLeft.hours).padStart(2, '0')}</span>:
               <span>{String(currentDealTimeLeft.minutes).padStart(2, '0')}</span>:
               <span>{String(currentDealTimeLeft.seconds).padStart(2, '0')}</span>
@@ -108,7 +108,7 @@ export function FlashDeals() {
         <ScrollArea className="w-full whitespace-nowrap rounded-md">
           <div className="flex w-max space-x-4 pb-4">
              {activeDeals.map((deal) => (
-                <div key={deal.id} className="w-[280px] md:w-[300px]">
+                <div key={deal.id} className="w-[250px] sm:w-[280px] lg:w-[300px]">
                     <ProductCard product={deal} />
                 </div>
             ))}

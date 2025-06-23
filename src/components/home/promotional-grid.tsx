@@ -79,7 +79,7 @@ export function PromotionalGrid() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               <div className="relative p-6 flex flex-col h-full">
                 <p className="text-sm">Get it in as soon as an hour*</p>
-                <h2 className="text-4xl font-extrabold leading-tight my-1 drop-shadow-md">Save on 1,000s of pet picks</h2>
+                <h2 className="text-3xl md:text-4xl font-extrabold leading-tight my-1 drop-shadow-md">Save on 1,000s of pet picks</h2>
                 <Button variant="secondary" className="mt-4 w-fit">Shop now</Button>
               </div>
             </PromoCard>
@@ -114,7 +114,7 @@ export function PromotionalGrid() {
                           data-ai-hint="stepladder tool"
                         />
                     </div>
-                    <p className="font-extrabold text-2xl text-right -mb-2">Flash Deals</p>
+                    <p className="font-extrabold text-xl md:text-2xl text-right -mb-2">Flash Deals</p>
                  </div>
               </PromoCard>
             </div>
