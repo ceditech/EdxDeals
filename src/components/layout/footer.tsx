@@ -37,7 +37,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block mb-4">
               <Image
-                src="/edxdeals-logo.png"
+                src="/images/logo/edxdeals-logo.png"
                 alt="Edxdeals Logo"
                 width={120}
                 height={30}

@@ -36,7 +36,8 @@ export function AccessibilityToolbar() {
 
   return (
     <TooltipProvider>
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-card p-2 rounded-full shadow-lg border flex items-center space-x-1">
+      {/* Position the toolbar slightly above the AI assistant widget to avoid overlap */}
+      <div className="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-card p-2 rounded-full shadow-lg border flex items-center space-x-1">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="ghost" size="icon" onClick={toggleHighContrast} aria-pressed={isHighContrast} className="h-9 w-9 rounded-full">
