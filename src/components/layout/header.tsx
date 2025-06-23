@@ -18,7 +18,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 w-full items-center px-4 md:px-6 py-2" data-ai-hint="header container">
         <Link href="/" className="mr-6 flex items-center" aria-label="Edxdeals Home">
-          <Image src="/images/logo/edxdeals-logo.png" alt="Edxdeals Logo" width={130} height={30} priority style={{ width: '70%', height: 'auto' }} />
+          <Image src="/edxdeals-logo.png" alt="Edxdeals Logo" width={130} height={30} priority style={{ width: '70%', height: 'auto' }} />
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
@@ -42,7 +42,7 @@ export default function Header() {
               className="w-full rounded-lg bg-muted pl-10 h-9"
               aria-label="Search products"
             />
-          </div> {/* Added missing closing div tag */}
+          </div>
         </div>
         
         <div className="flex items-center space-x-2 md:space-x-3">
@@ -66,7 +66,7 @@ export default function Header() {
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
                 <nav className="flex flex-col space-y-4 pt-8">
                   <Link href="/" className="flex items-center mb-4" aria-label="Edxdeals Home">
-                    <Image src="/images/logo/edxdeals-logo.png" alt="Edxdeals Logo" width={150} height={37} style={{ width: 'auto', height: 'auto' }} data-ai-hint="mobile logo" className="max-h-10 max-w-[calc(100%-10px)] object-contain m-1.5" />
+                    <Image src="/edxdeals-logo.png" alt="Edxdeals Logo" width={150} height={37} style={{ width: 'auto', height: 'auto' }} data-ai-hint="mobile logo" className="max-h-10 max-w-[calc(100%-10px)] object-contain m-1.5" />
                   </Link>
                   <div className="relative mb-4 sm:hidden">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
