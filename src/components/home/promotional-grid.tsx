@@ -23,12 +23,12 @@ const PromoCard = ({
 export function PromotionalGrid() {
   return (
     <section className="bg-background">
-      <div className="container mx-auto px-4 py-6">
+      <div className="px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           
           {/* Column 1 */}
           <div className="flex flex-col gap-4">
-            <PromoCard href="/deals/grad-cards" className="bg-gray-100 min-h-[250px]">
+            <PromoCard href="/deals/grad-cards" className="bg-gray-50 min-h-[250px]">
               <div className="p-4 flex flex-col justify-between h-full">
                 <div>
                   <h3 className="font-bold text-lg text-foreground">Grad cards from 98¢</h3>
@@ -47,7 +47,7 @@ export function PromotionalGrid() {
               </div>
             </PromoCard>
 
-            <PromoCard href="/collections/beauty" className="bg-orange-50 flex-grow">
+            <PromoCard href="/collections/beauty" className="bg-gray-50 flex-grow">
               <div className="p-4 flex flex-col h-full">
                 <div>
                   <h3 className="font-bold text-lg text-foreground">Hot, new beauty from $10</h3>
@@ -141,7 +141,7 @@ export function PromotionalGrid() {
                 </div>
              </PromoCard>
 
-             <PromoCard href="/collections/beauty-event" className="bg-blue-50 min-h-[220px]">
+             <PromoCard href="/collections/beauty-event" className="bg-gray-50 min-h-[220px]">
                <div className="p-4 flex flex-col justify-between h-full">
                   <div>
                     <h3 className="font-bold text-lg text-foreground">1,000s of finds, for way less</h3>
