@@ -42,8 +42,8 @@ export function MainBanner() {
             <Image
               src={banner.imageUrl}
               alt={banner.title}
-              layout="fill"
-              objectFit="cover"
+              width={1200}
+              height={400}
               priority
               data-ai-hint={banner.dataAiHint}
             />
@@ -80,8 +80,8 @@ export function MainBanner() {
           <Image
             src={banner.imageUrl}
             alt={banner.title}
-            layout="fill"
-            objectFit="cover"
+            width={1200}
+            height={400}
             priority={index === 0} // Prioritize loading the first image
             data-ai-hint={banner.dataAiHint}
           />
