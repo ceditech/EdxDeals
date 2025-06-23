@@ -1,7 +1,6 @@
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
-import { MainBanner } from '@/components/home/main-banner';
-import { QuickCategories } from '@/components/home/quick-categories';
+import { PromotionalGrid } from '@/components/home/promotional-grid';
 import { FeaturedProducts } from '@/components/home/featured-products';
 import { AiRecommendations } from '@/components/home/ai-recommendations';
 import { FlashDeals } from '@/components/home/flash-deals';
@@ -12,8 +11,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow">
-        <MainBanner />
-        <QuickCategories />
+        <PromotionalGrid />
         <Separator className="my-8 md:my-12" />
         <FeaturedProducts />
         <Separator className="my-8 md:my-12" />
