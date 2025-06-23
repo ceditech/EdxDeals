@@ -5,8 +5,8 @@ import AiAssistantWidget from '@/components/layout/ai-assistant-widget';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'FluxiCart Landing AI',
-  description: 'Welcome to FluxiCart - Your Modern E-commerce Destination',
+  title: 'Edxdeals',
+  description: 'Welcome to Edxdeals - Your Modern E-commerce Destination',
 };
 
 export default function RootLayout({

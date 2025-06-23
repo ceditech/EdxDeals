@@ -37,8 +37,8 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block mb-4">
               <Image
-                src="/images/FluxiCart-logo.png"
-                alt="FluxiCart Logo"
+                src="/images/Edxdeals-logo.png"
+                alt="Edxdeals Logo"
                 width={120}
                 height={30}
               />
@@ -90,7 +90,7 @@ export default function Footer() {
 
         <div className="border-t pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} FluxiCart. All rights reserved.
+            &copy; {new Date().getFullYear()} Edxdeals. All rights reserved.
           </p>
           <div className="flex items-center space-x-3">
             <LanguageSwitcher />
