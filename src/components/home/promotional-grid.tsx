@@ -47,7 +47,7 @@ export function PromotionalGrid() {
               </div>
             </PromoCard>
 
-            <PromoCard href="/collections/beauty" className="bg-[#fdf3ef] flex-grow">
+            <PromoCard href="/collections/beauty" className="bg-orange-50 flex-grow">
               <div className="p-4 flex flex-col h-full">
                 <div>
                   <h3 className="font-bold text-lg text-foreground">Hot, new beauty from $10</h3>
@@ -141,7 +141,7 @@ export function PromotionalGrid() {
                 </div>
              </PromoCard>
 
-             <PromoCard href="/collections/beauty-event" className="bg-[#eef7fe] min-h-[220px]">
+             <PromoCard href="/collections/beauty-event" className="bg-blue-50 min-h-[220px]">
                <div className="p-4 flex flex-col justify-between h-full">
                   <div>
                     <h3 className="font-bold text-lg text-foreground">1,000s of finds, for way less</h3>
