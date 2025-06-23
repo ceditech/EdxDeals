@@ -28,11 +28,11 @@ export function PromotionalGrid() {
           
           {/* Column 1 */}
           <div className="flex flex-col gap-4">
-            <PromoCard href="/deals/grad-cards" className="bg-gray-50 min-h-[250px]">
+            <PromoCard href="/deals/grad-cards" className="bg-lime-400 text-white min-h-[250px]">
               <div className="p-4 flex flex-col justify-between h-full">
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">Grad cards from 98¢</h3>
-                  <p className="text-sm text-primary hover:underline font-medium">Shop now</p>
+                  <h3 className="font-bold text-lg">Grad cards from 98¢</h3>
+                  <p className="text-sm hover:underline font-medium">Shop now</p>
                 </div>
                 <div className="relative h-32 -mb-4 -mr-4 self-end">
                   <Image
@@ -47,11 +47,11 @@ export function PromotionalGrid() {
               </div>
             </PromoCard>
 
-            <PromoCard href="/collections/beauty" className="bg-gray-50 flex-grow">
+            <PromoCard href="/collections/beauty" className="bg-cyan-400 text-white flex-grow">
               <div className="p-4 flex flex-col h-full">
                 <div>
-                  <h3 className="font-bold text-lg text-foreground">Hot, new beauty from $10</h3>
-                  <p className="text-sm text-primary hover:underline font-medium">Shop now</p>
+                  <h3 className="font-bold text-lg">Hot, new beauty from $10</h3>
+                  <p className="text-sm hover:underline font-medium">Shop now</p>
                 </div>
                 <div className="relative flex-grow mt-2">
                   <Image
@@ -85,7 +85,7 @@ export function PromotionalGrid() {
             </PromoCard>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <PromoCard href="/collections/home-decor" className="relative text-black min-h-[220px]">
+              <PromoCard href="/collections/home-decor" className="relative text-white min-h-[220px]">
                  <Image
                     src="https://placehold.co/400x300.png"
                     alt="Summer home trends"
@@ -93,13 +93,13 @@ export function PromotionalGrid() {
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     data-ai-hint="living room furniture"
                   />
-                  <div className="absolute inset-0 bg-black/10"></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
                   <div className="relative p-4">
                     <h3 className="font-bold text-lg">Summer home trends</h3>
                     <p className="text-sm hover:underline font-medium">Shop home</p>
                   </div>
               </PromoCard>
-              <PromoCard href="/deals" className="bg-yellow-200 text-foreground min-h-[220px]">
+              <PromoCard href="/deals" className="bg-yellow-300 text-foreground min-h-[220px]">
                  <div className="p-4 flex flex-col h-full">
                     <div>
                       <h3 className="font-bold text-lg">Up to 40% off</h3>
@@ -122,11 +122,11 @@ export function PromotionalGrid() {
           
           {/* Column 4 */}
           <div className="flex flex-col gap-4">
-             <PromoCard href="/deals/grad-party" className="bg-gray-50 min-h-[220px]">
+             <PromoCard href="/deals/grad-party" className="bg-blue-400 text-white min-h-[220px]">
                <div className="p-4 flex flex-col justify-between h-full">
                   <div>
-                    <h3 className="font-bold text-lg text-foreground">Grad party supplies—to you fast</h3>
-                    <p className="text-sm text-primary hover:underline font-medium">Shop supplies</p>
+                    <h3 className="font-bold text-lg">Grad party supplies—to you fast</h3>
+                    <p className="text-sm hover:underline font-medium">Shop supplies</p>
                   </div>
                   <div className="relative h-28 -mb-4 -mr-4 self-end">
                     <Image
@@ -141,10 +141,10 @@ export function PromotionalGrid() {
                 </div>
              </PromoCard>
 
-             <PromoCard href="/collections/beauty-event" className="bg-gray-50 min-h-[220px]">
+             <PromoCard href="/collections/beauty-event" className="bg-orange-100 text-foreground min-h-[220px]">
                <div className="p-4 flex flex-col justify-between h-full">
                   <div>
-                    <h3 className="font-bold text-lg text-foreground">1,000s of finds, for way less</h3>
+                    <h3 className="font-bold text-lg">1,000s of finds, for way less</h3>
                     <p className="text-sm text-primary hover:underline font-medium">Shop now</p>
                   </div>
                   <div className="relative h-28 -mb-4 -mr-4 self-end">
@@ -160,11 +160,11 @@ export function PromotionalGrid() {
                 </div>
              </PromoCard>
 
-             <PromoCard href="/collections/memorial-day" className="bg-gray-50 flex-grow">
+             <PromoCard href="/collections/memorial-day" className="bg-sky-400 text-white flex-grow">
                 <div className="p-4 flex flex-col h-full">
                   <div>
-                    <h3 className="font-bold text-lg text-foreground">Memorial Day faves</h3>
-                    <p className="text-sm text-primary hover:underline font-medium">Shop now</p>
+                    <h3 className="font-bold text-lg">Memorial Day faves</h3>
+                    <p className="text-sm hover:underline font-medium">Shop now</p>
                   </div>
                   <div className="relative flex-grow mt-2">
                     <Image
