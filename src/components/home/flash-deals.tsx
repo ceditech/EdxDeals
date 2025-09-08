@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { mockFlashDeals } from '@/lib/mock-data';
-import { ProductCard } from './product-card';
+import UnifiedProductCard from './unified-product-card';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Zap } from 'lucide-react';
+import DealAlertsModal from '@/components/modals/deal-alerts-modal';
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import type { Deal } from '@/types';
@@ -32,6 +33,7 @@ export function FlashDeals() {
   const [timeLeft, setTimeLeft] = useState<Record<string, Countdown | null>>({});
   const [currentDealIndex, setCurrentDealIndex] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  const [isDealAlertsModalOpen, setIsDealAlertsModalOpen] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -83,8 +85,9 @@ export function FlashDeals() {
 
 
   return (
-    <section aria-labelledby="flash-deals-title" className="py-8 md:py-12 bg-gradient-to-br from-accent/90 via-accent/80 to-primary/40 text-accent-foreground rounded-lg shadow-xl my-8">
-      <div className="container mx-auto px-4">
+    <>
+      <section aria-labelledby="flash-deals-title" className="py-8 md:py-12 bg-gradient-to-br from-accent/90 via-accent/80 to-primary/40 text-accent-foreground rounded-lg shadow-xl my-8">
+        <div className="container mx-auto px-4">
         <div className="text-center mb-6 md:mb-8">
           <h2 id="flash-deals-title" className="text-3xl md:text-4xl font-headline font-extrabold mb-2 flex items-center justify-center">
             <Zap className="mr-3 h-10 w-10 animate-pulse" /> Flash Deals
@@ -109,14 +112,27 @@ export function FlashDeals() {
           <div className="flex w-max space-x-4 pb-4">
              {activeDeals.map((deal) => (
                 <div key={deal.id} className="w-[250px] sm:w-[280px] lg:w-[300px]">
-                    <ProductCard product={deal} />
+                    <UnifiedProductCard product={deal} badge="FLASH DEAL" />
                 </div>
             ))}
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
-
-      </div>
-    </section>
+        <div className="text-center mt-8">
+          <Button
+            variant="outline"
+            className="border-white/50 text-white hover:bg-white/10"
+            onClick={() => setIsDealAlertsModalOpen(true)}
+          >
+            Set Deal Alerts
+          </Button>
+        </div>
+        </div>
+      </section>
+      <DealAlertsModal
+        isOpen={isDealAlertsModalOpen}
+        onClose={() => setIsDealAlertsModalOpen(false)}
+      />
+    </>
   );
 }

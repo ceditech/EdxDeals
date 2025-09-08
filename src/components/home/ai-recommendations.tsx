@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { personalizedProductRecommendations, type PersonalizedProductRecommendationsOutput } from '@/ai/flows/personalized-product-recommendations';
-import { ProductCard } from './product-card';
+import UnifiedProductCard from './unified-product-card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2 } from 'lucide-react';
 import type { Product } from '@/types';
@@ -65,11 +65,15 @@ export function AiRecommendations() {
         mockMatch = aiMockProducts[index % aiMockProducts.length]; // Cycle through mock products
     }
 
+    // Use deterministic pricing based on name hash to avoid hydration mismatch
+    const nameHash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const deterministicPrice = ((nameHash * 31) % 150) + 50; // Price between $50-$200
+    
     return {
       id: mockMatch?.id ? `${mockMatch.id}-${index}`: `ai-rec-${index}`,
       name: name, // Use the AI-generated name
       imageUrl: mockMatch?.imageUrl || `https://placehold.co/300x300.png`,
-      price: mockMatch?.price || `$${Math.floor(Math.random() * 200 + 50)}`,
+      price: mockMatch?.price || `$${deterministicPrice}`,
       category: mockMatch?.category || 'Specially Recommended',
       dataAiHint: mockMatch?.dataAiHint || 'personalized item'
     };
@@ -96,7 +100,7 @@ export function AiRecommendations() {
         {!loading && !error && recommendedProductsToDisplay.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {recommendedProductsToDisplay.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <UnifiedProductCard key={product.id} product={product} badge="AI PICK" />
             ))}
           </div>
         )}

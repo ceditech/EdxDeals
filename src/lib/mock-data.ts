@@ -121,7 +121,107 @@ export const mockFlashDeals: Deal[] = [
     price: '$249.00',
     originalPrice: '$399.00',
     category: 'Home',
-    endDate: new Date(now.getTime() + 1 * 60 * 60 * 1000), // 1 hour from now
+    endDate: new Date(now.getTime() + 1 * 60 * 60 * 1000),
     dataAiHint: 'gaming chair'
   },
+  {
+    id: 'fd4',
+    name: 'Designer Leather Jacket',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$149.99',
+    originalPrice: '$299.99',
+    category: 'Fashion',
+    endDate: new Date(now.getTime() + 8 * 60 * 60 * 1000),
+    dataAiHint: 'fashion jacket'
+  },
+  {
+    id: 'fd5',
+    name: 'Professional Yoga Mat',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$49.99',
+    originalPrice: '$89.99',
+    category: 'Sports & Outdoors',
+    endDate: new Date(now.getTime() + 3 * 60 * 60 * 1000),
+    dataAiHint: 'yoga fitness'
+  },
+  {
+    id: 'fd6',
+    name: 'Smart Coffee Maker',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$89.99',
+    originalPrice: '$129.99',
+    category: 'Home',
+    endDate: new Date(now.getTime() + 6 * 60 * 60 * 1000),
+    dataAiHint: 'coffee machine'
+  },
+  {
+    id: 'fd7',
+    name: 'Wireless Gaming Mouse',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$59.99',
+    originalPrice: '$99.99',
+    category: 'Electronics',
+    endDate: new Date(now.getTime() + 2 * 60 * 60 * 1000),
+    dataAiHint: 'gaming mouse'
+  },
+  {
+    id: 'fd15',
+    name: 'Luxury Silk Scarf',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$59.99',
+    originalPrice: '$99.99',
+    category: 'Fashion & Apparel',
+    endDate: new Date(now.getTime() + 10 * 60 * 60 * 1000),
+    dataAiHint: 'fashion scarf'
+  },
+  {
+    id: 'fd16',
+    name: 'Aromatherapy Diffuser',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$39.99',
+    originalPrice: '$69.99',
+    category: 'Home & Garden',
+    endDate: new Date(now.getTime() + 12 * 60 * 60 * 1000),
+    dataAiHint: 'home aromatherapy'
+  },
+  {
+    id: 'fd17',
+    name: 'Electric Toothbrush',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$89.99',
+    originalPrice: '$129.99',
+    category: 'Health & Beauty',
+    endDate: new Date(now.getTime() + 14 * 60 * 60 * 1000),
+    dataAiHint: 'dental care'
+  },
+  {
+    id: 'fd18',
+    name: 'Resistance Bands Set',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$29.99',
+    originalPrice: '$49.99',
+    category: 'Sports & Outdoors',
+    endDate: new Date(now.getTime() + 16 * 60 * 60 * 1000),
+    dataAiHint: 'fitness bands'
+  },
+  {
+    id: 'fd19',
+    name: 'GPS Navigation System',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$129.99',
+    originalPrice: '$199.99',
+    category: 'Automotive',
+    endDate: new Date(now.getTime() + 18 * 60 * 60 * 1000),
+    dataAiHint: 'car gps'
+  },
+  {
+    id: 'fd20',
+    name: 'Classic Literature Box Set',
+    imageUrl: 'https://placehold.co/400x400.png',
+    price: '$79.99',
+    originalPrice: '$129.99',
+    category: 'Books & Media',
+    endDate: new Date(now.getTime() + 20 * 60 * 60 * 1000),
+    dataAiHint: 'classic books'
+  }
 ];

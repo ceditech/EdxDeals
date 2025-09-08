@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import AiAssistantWidget from '@/components/layout/ai-assistant-widget';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
+import { CartProvider } from '@/hooks/use-cart';
+import { WishlistProvider } from '@/hooks/use-wishlist';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -23,11 +27,17 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className={cn("font-body antialiased min-h-screen flex flex-col")} suppressHydrationWarning={true}>
-        <div className="flex-grow">
-          {children}
-        </div>
-        <Toaster />
-        <AiAssistantWidget />
+        <CartProvider>
+          <WishlistProvider>
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+            <Toaster />
+            <AiAssistantWidget />
+          </WishlistProvider>
+        </CartProvider>
       </body>
     </html>
   );

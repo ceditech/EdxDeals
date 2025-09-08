@@ -1,5 +1,5 @@
 import { mockFeaturedProducts } from '@/lib/mock-data';
-import { ProductCard } from './product-card';
+import UnifiedProductCard from './unified-product-card';
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export function FeaturedProducts() {
@@ -13,7 +13,7 @@ export function FeaturedProducts() {
           <div className="flex w-max space-x-4 pb-4">
             {mockFeaturedProducts.map((product) => (
               <div key={product.id} className="w-[250px] sm:w-[280px] lg:w-[300px]">
-                 <ProductCard product={product} />
+                 <UnifiedProductCard product={product} />
               </div>
             ))}
           </div>
