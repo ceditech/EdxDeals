@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -24,6 +25,7 @@ export default function RegisterPage() {
   const [authError, setAuthError] = useState<string>('');
   const [userType, setUserType] = useState<'user' | 'seller'>('user');
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const currentSchema = userType === 'seller' ? sellerRegisterSchema : registerSchema;
 
@@ -42,6 +44,14 @@ export default function RegisterPage() {
       userType: 'user'
     }
   });
+
+  useEffect(() => {
+    const type = searchParams.get('type');
+    if (type === 'seller') {
+      setUserType('seller');
+      setValue('userType', 'seller');
+    }
+  }, [searchParams, setValue]);
 
   const selectedCountry = watch('country');
 

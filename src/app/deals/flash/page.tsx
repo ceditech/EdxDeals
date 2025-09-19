@@ -1,12 +1,5 @@
 import { Metadata } from 'next';
-import GlobalCountdownBanner from '@/components/deals/global-countdown-banner';
-import FilterBar from '@/components/deals/filter-bar';
-import FlashDealsGrid from '@/components/deals/flash-deals-grid';
-import FlashDealsByBrand from '@/components/deals/flash-deals-by-brand';
-import FlashDealsByCategory from '@/components/deals/flash-deals-by-category';
-import FlashDealsBySeller from '@/components/deals/flash-deals-by-seller';
-import FlashDealVideos from '@/components/deals/flash-deal-videos';
-import SubscribeCta from '@/components/deals/subscribe-cta';
+import FlashDealsPageClient from '@/components/deals/FlashDealsPageClient';
 
 export const metadata: Metadata = {
   title: 'Flash Deals | EdxDeals — Today’s Best Limited Time Offers',
@@ -38,19 +31,5 @@ export const metadata: Metadata = {
 };
 
 export default function FlashDealsPage() {
-  return (
-    <div className="bg-background">
-      <GlobalCountdownBanner />
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-4">Flash Deals</h1>
-        <FilterBar />
-        <FlashDealsGrid />
-        <FlashDealsByBrand />
-        <FlashDealsByCategory />
-        <FlashDealsBySeller />
-        <FlashDealVideos />
-        <SubscribeCta />
-      </div>
-    </div>
-  );
+  return <FlashDealsPageClient />;
 }

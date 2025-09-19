@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight, Star, ShoppingBag } from 'lucide-react';
+import PartnerWithUsModal from '@/components/PartnerWithUsModal';
 
 interface Brand {
   id: string;
@@ -93,6 +94,7 @@ export default function TopBrands() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 4;
   const maxIndex = Math.max(0, topBrands.length - itemsPerPage);
+  const [partnerOpen, setPartnerOpen] = useState(false);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -278,11 +280,19 @@ export default function TopBrands() {
           <p className="text-muted-foreground mb-4">
             Join our marketplace and reach millions of customers
           </p>
-          <Button variant="outline" className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white">
+          <Button
+            variant="outline"
+            className="border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
+            onClick={() => setPartnerOpen(true)}
+            aria-haspopup="dialog"
+            aria-expanded={partnerOpen}
+          >
             Partner with Us
           </Button>
         </div>
       </div>
+
+      <PartnerWithUsModal open={partnerOpen} onOpenChange={setPartnerOpen} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -12,50 +13,54 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
+import SellerDealsModal, { getSellerDealCount } from './SellerDealsModal';
 
 const sellers = [
   {
     name: 'Tech Guru',
     avatar: '/images/sellers/a.png',
     rating: 4.8,
-    deals: 12,
   },
   {
     name: 'Home Comforts',
     avatar: '/images/sellers/b.png',
     rating: 4.9,
-    deals: 8,
   },
   {
     name: 'Fashion Forward',
     avatar: '/images/sellers/c.png',
     rating: 4.7,
-    deals: 15,
   },
   {
     name: 'Gadget Galaxy',
     avatar: '/images/sellers/d.png',
     rating: 4.8,
-    deals: 20,
   },
   {
     name: 'Kitchen Kings',
     avatar: '/images/sellers/e.png',
     rating: 4.9,
-    deals: 5,
   },
   {
     name: 'Outdoor Outfitters',
     avatar: '/images/sellers/f.png',
     rating: 4.6,
-    deals: 10,
   },
 ];
 
 export default function FlashDealsBySeller() {
+  const [selectedSeller, setSelectedSeller] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleViewDeals = (sellerName: string) => {
+    setSelectedSeller(sellerName);
+    setIsModalOpen(true);
+  };
+
   return (
-    <div className="my-8">
-      <h2 className="text-2xl font-bold mb-4">Flash Deals by Seller</h2>
+    <>
+      <div className="my-8">
+        <h2 className="text-2xl font-bold mb-4">Flash Deals by Seller</h2>
       <Carousel
         opts={{
           align: 'start',
@@ -79,9 +84,14 @@ export default function FlashDealsBySeller() {
                       <span>{seller.rating}</span>
                     </div>
                     <Badge variant="secondary" className="my-4">
-                      {seller.deals} Flash Deals
+                      {getSellerDealCount(seller.name)} Flash Deals
                     </Badge>
-                    <Button variant="outline" size="sm">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleViewDeals(seller.name)}
+                      aria-label={`View flash deals from ${seller.name}`}
+                    >
                       View Deals
                     </Button>
                   </CardContent>
@@ -94,5 +104,13 @@ export default function FlashDealsBySeller() {
         <CarouselNext />
       </Carousel>
     </div>
+
+    {/* Seller Deals Modal */}
+    <SellerDealsModal
+      open={isModalOpen}
+      onOpenChange={setIsModalOpen}
+      sellerName={selectedSeller}
+    />
+  </>
   );
 }

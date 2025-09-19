@@ -44,24 +44,34 @@ function CountdownTimer({ endDate }: CountdownTimerProps) {
   const isExpired =
     timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0;
 
+  const isUrgent = timeLeft.hours === 0 && timeLeft.minutes < 10;
+
   return (
-    <div className="flex items-center gap-2 text-sm">
-      <Clock className="w-4 h-4 text-red-500" />
+    <div className={`flex items-center gap-2 text-sm transition-all duration-300 ${
+      isUrgent ? 'animate-pulse' : ''
+    }`}>
+      <Clock className={`w-4 h-4 ${isUrgent ? 'text-yellow-500' : 'text-red-500'}`} />
       {isExpired ? (
         <span className="text-red-500 font-medium">Deal Expired</span>
       ) : (
         <div className="flex items-center gap-1">
           <span className="text-muted-foreground">Ends in:</span>
-          <div className="flex gap-1">
-            <span className="bg-red-500 text-white px-2 py-1 rounded text-xs font-mono">
+          <div className={`flex gap-1 ${isUrgent ? 'scale-110' : ''} transition-transform duration-300`}>
+            <span className={`px-2 py-1 rounded text-xs font-mono text-white ${
+              isUrgent ? 'bg-yellow-500 animate-pulse' : 'bg-red-500'
+            }`}>
               {String(timeLeft.hours).padStart(2, '0')}
             </span>
-            <span className="text-red-500">:</span>
-            <span className="bg-red-500 text-white px-2 py-1 rounded text-xs font-mono">
+            <span className={isUrgent ? 'text-yellow-500' : 'text-red-500'}>:</span>
+            <span className={`px-2 py-1 rounded text-xs font-mono text-white ${
+              isUrgent ? 'bg-yellow-500 animate-pulse' : 'bg-red-500'
+            }`}>
               {String(timeLeft.minutes).padStart(2, '0')}
             </span>
-            <span className="text-red-500">:</span>
-            <span className="bg-red-500 text-white px-2 py-1 rounded text-xs font-mono">
+            <span className={isUrgent ? 'text-yellow-500' : 'text-red-500'}>:</span>
+            <span className={`px-2 py-1 rounded text-xs font-mono text-white ${
+              isUrgent ? 'bg-yellow-500 animate-pulse' : 'bg-red-500'
+            }`}>
               {String(timeLeft.seconds).padStart(2, '0')}
             </span>
           </div>
@@ -73,7 +83,7 @@ function CountdownTimer({ endDate }: CountdownTimerProps) {
 
 export default function FlashDealsGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div id="flash-deals-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 transition-all duration-300">
       {mockFlashDeals.map((deal) => (
         <div key={deal.id} className="relative group">
           <UnifiedProductCard product={deal} showRating={true} />

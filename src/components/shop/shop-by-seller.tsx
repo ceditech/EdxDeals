@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight, Star, MapPin, ShoppingBag, Users } from 'lucide-react';
+import { handleSellerNavigation } from '@/lib/seller-utils';
 
 interface Seller {
   id: string;
@@ -156,6 +158,7 @@ const topSellers: Seller[] = [
 ];
 
 export default function ShopBySeller() {
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const itemsPerPage = 2;
   const maxIndex = Math.max(0, topSellers.length - itemsPerPage);
@@ -166,6 +169,10 @@ export default function ShopBySeller() {
 
   const goToNext = () => {
     setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+  };
+
+  const handleVisitStore = async (sellerId: string) => {
+    await handleSellerNavigation(sellerId, router);
   };
 
   const visibleSellers = topSellers.slice(currentIndex, currentIndex + itemsPerPage);
@@ -325,11 +332,12 @@ export default function ShopBySeller() {
                   </div>
 
                   {/* Visit Store Button */}
-                  <Link href={seller.href}>
-                    <Button className="w-full bg-purple-500 hover:bg-purple-600">
-                      Visit {seller.name} Store
-                    </Button>
-                  </Link>
+                  <Button
+                    className="w-full bg-purple-500 hover:bg-purple-600"
+                    onClick={() => handleVisitStore(seller.id)}
+                  >
+                    Visit {seller.name} Store
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -367,7 +375,10 @@ export default function ShopBySeller() {
           <p className="text-muted-foreground mb-4">
             Join thousands of successful sellers and grow your business with us
           </p>
-          <Button className="bg-purple-500 hover:bg-purple-600">
+          <Button
+            className="bg-purple-500 hover:bg-purple-600"
+            onClick={() => router.push('/auth/register?type=seller')}
+          >
             Become a Seller
           </Button>
         </div>

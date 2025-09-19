@@ -33,11 +33,13 @@ interface RecommendationSection {
 }
 
 export default function PersonalizedRecommendations() {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  // Use a stable initial value to avoid SSR/client divergence
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [activeSection, setActiveSection] = useState(0);
 
-  // Update time every minute for time-based recommendations
+  // Set time after mount, then update every minute
   useEffect(() => {
+    setCurrentTime(new Date());
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 60000);
@@ -47,6 +49,9 @@ export default function PersonalizedRecommendations() {
   // Get all products and convert them
   const allProducts = Object.values(PRODUCT_DATABASE).map(convertToProduct);
 
+  // Derive time-of-day deterministically on first paint (SSR/client match)
+  const timeOfDay = currentTime ? currentTime.getHours() : 12;
+
   // Mock user data for personalization
   const mockUserData = {
     name: 'Cedric',
@@ -54,7 +59,7 @@ export default function PersonalizedRecommendations() {
     purchaseHistory: ['1', '3'],
     wishlist: ['fp1', 'fd2'],
     browsingCategories: ['Electronics & Technology', 'Home & Garden'],
-    timeOfDay: currentTime.getHours(),
+    timeOfDay,
     location: 'Chicago, IL'
   };
 

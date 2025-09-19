@@ -10,6 +10,7 @@ import PersonalizedRecommendations from '@/components/shop/personalized-recommen
 import ClearanceDeals from '@/components/shop/clearance-deals';
 import ShopByFilters from '@/components/shop/shop-by-filters';
 import SponsoredSection from '@/components/shop/sponsored-section';
+import PartnerWithUsCTA from '@/components/shop/partner-with-us-cta';
 
 export const metadata: Metadata = {
   title: 'Shop - EdxDeals | Best Deals on Electronics, Home & More',
@@ -93,6 +94,10 @@ export default function ShopPage() {
       {/* Sponsored Section */}
       <section className="py-8 px-4 md:px-6 lg:px-8 bg-muted/10" aria-label="Sponsored products and offers">
         <SponsoredSection />
+      </section>
+
+      <section className="py-8 px-4 md:px-6 lg:px-8" aria-label="Partner with EdxDeals">
+        <PartnerWithUsCTA />
       </section>
     </div>
   );

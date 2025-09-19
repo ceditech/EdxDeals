@@ -1,5 +1,24 @@
 import type { DetailedProduct } from '@/types/product-detail';
 
+// Deterministic PRNG utilities to ensure SSR/CSR parity for fallback products
+function hashStringToSeed(str: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h += (h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24);
+  }
+  return (h >>> 0);
+}
+
+function mulberry32(a: number) {
+  return function () {
+    let t = (a += 0x6D2B79F5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 // Comprehensive product database with detailed information
 export const PRODUCT_DATABASE: { [key: string]: DetailedProduct } = {
   // Electronics & Technology Products
@@ -985,6 +1004,10 @@ const generateFallbackProduct = (productId: string): DetailedProduct => {
   const templateIndex = parseInt(productId) || productId.length;
   const template = productTemplates[templateIndex % productTemplates.length];
 
+  // Seeded RNG for deterministic fallback values (SSR/CSR parity)
+  const seed = hashStringToSeed(productId);
+  const rng = mulberry32(seed);
+
   return {
     id: productId,
     name: template.name,
@@ -996,8 +1019,9 @@ const generateFallbackProduct = (productId: string): DetailedProduct => {
     ],
     price: template.price,
     oldPrice: template.oldPrice,
-    rating: 4.0 + (Math.random() * 1), // Random rating between 4.0-5.0
-    reviews: Math.floor(Math.random() * 500) + 50, // Random reviews 50-550
+    // Deterministic pseudo-random based on productId for hydration safety
+    rating: 4.0 + (rng() * 1), // 4.0 - 5.0
+    reviews: Math.floor(rng() * 500) + 50, // 50 - 550
     brand: template.brand,
     category: template.category,
     shortDesc: `High-quality ${template.name.toLowerCase()} with premium features and excellent performance`,
@@ -1024,7 +1048,7 @@ const generateFallbackProduct = (productId: string): DetailedProduct => {
     },
     warranty: '1-year limited warranty with 30-day money-back guarantee',
     inStock: true,
-    stockCount: Math.floor(Math.random() * 50) + 10, // Random stock 10-60
+    stockCount: Math.floor(rng() * 50) + 10, // 10 - 60 (deterministic)
     sku: `${template.brand.toUpperCase()}-${productId}`,
     weight: '200g',
     dimensions: '6" x 4" x 2"',

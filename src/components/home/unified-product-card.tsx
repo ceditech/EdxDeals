@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +22,10 @@ interface UnifiedProductCardProps {
 export default function UnifiedProductCard({ product, badge, showRating = true, className }: UnifiedProductCardProps) {
   const { addItem } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+
+  // Defer wishlist UI rendering until after mount to ensure SSR/client parity
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const handleAddToCart = () => {
     // Convert Product type to CartItem format
@@ -51,7 +56,7 @@ export default function UnifiedProductCard({ product, badge, showRating = true, 
     ? Math.round(((originalPrice - currentPrice) / originalPrice) * 100)
     : 0;
   
-  const isNew = !('endDate' in product) && Math.random() > 0.8; // Mock "new" status
+  // removed non-deterministic "isNew" to avoid SSR/client hydration mismatch
 
   const handleWishlistToggle = () => {
     const wishlistItem = {
@@ -74,29 +79,31 @@ export default function UnifiedProductCard({ product, badge, showRating = true, 
     <Card className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full flex flex-col">
       <div className="relative aspect-square overflow-hidden">
         {/* Custom badge (for flash deals, etc.) */}
-        {(badge || isNew) && (
+        {badge && (
           <Badge
             className={cn(
               "absolute top-2 left-2 z-10",
-              isNew ? "bg-blue-500 text-white animate-pulse" : "bg-red-500 hover:bg-red-600"
+              "bg-red-500 hover:bg-red-600"
             )}
           >
-            {isNew ? 'NEW' : badge}
+            {badge}
           </Badge>
         )}
         
-        {/* Wishlist Heart Icon */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-2 right-2 z-10 h-8 w-8 bg-white/80 hover:bg-white shadow-sm"
-          onClick={handleWishlistToggle}
-          aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
-        >
-          <span className="text-lg">
-            {inWishlist ? '💙' : '🤍'}
-          </span>
-        </Button>
+        {/* Wishlist Heart Icon (hydration-safe: renders after mount) */}
+        {mounted && (
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-2 right-2 z-10 h-8 w-8 bg-white/80 hover:bg-white shadow-sm"
+            onClick={handleWishlistToggle}
+            aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <span className="text-lg">
+              {inWishlist ? '💙' : '🤍'}
+            </span>
+          </Button>
+        )}
         
         {/* Sale badge */}
         {product.originalPrice && (
