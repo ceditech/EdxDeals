@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight, Star, ShoppingBag } from 'lucide-react';
 import PartnerWithUsModal from '@/components/PartnerWithUsModal';
+import BrandProductModal from '@/components/brands/BrandProductModal';
 
 interface Brand {
   id: string;
@@ -95,6 +96,15 @@ export default function TopBrands() {
   const itemsPerPage = 4;
   const maxIndex = Math.max(0, topBrands.length - itemsPerPage);
   const [partnerOpen, setPartnerOpen] = useState(false);
+  const [brandModalOpen, setBrandModalOpen] = useState(false);
+  const [selectedBrandId, setSelectedBrandId] = useState('');
+
+  const handleShopBrand = (brandId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedBrandId(brandId);
+    setBrandModalOpen(true);
+  };
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -158,79 +168,78 @@ export default function TopBrands() {
           {/* Brands Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-0 md:px-12">
             {visibleBrands.map((brand) => (
-              <Link key={brand.id} href={brand.href} className="group">
-                <Card className="h-full hover:shadow-lg transition-all duration-300 group-hover:scale-105 border-2 hover:border-blue-200">
-                  <CardContent className="p-6">
-                    {/* Brand Logo */}
-                    <div className="flex items-center justify-center mb-4 h-16">
-                      <div className="w-full h-full bg-muted/30 rounded-lg flex items-center justify-center p-4">
-                        <div className="text-2xl font-bold text-muted-foreground">
-                          {brand.name}
-                        </div>
+              <Card key={brand.id} className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105 border-2 hover:border-blue-200 group">
+                <CardContent className="p-6">
+                  {/* Brand Logo */}
+                  <div className="flex items-center justify-center mb-4 h-16">
+                    <div className="w-full h-full bg-muted/30 rounded-lg flex items-center justify-center p-4">
+                      <div className="text-2xl font-bold text-muted-foreground">
+                        {brand.name}
                       </div>
                     </div>
+                  </div>
 
-                    {/* Verified Badge */}
-                    {brand.isVerified && (
-                      <div className="flex justify-center mb-3">
-                        <Badge className="bg-green-500 hover:bg-green-600 text-white text-xs">
-                          ✓ VERIFIED
+                  {/* Verified Badge */}
+                  {brand.isVerified && (
+                    <div className="flex justify-center mb-3">
+                      <Badge className="bg-green-500 hover:bg-green-600 text-white text-xs">
+                        ✓ VERIFIED
+                      </Badge>
+                    </div>
+                  )}
+
+                  {/* Brand Name */}
+                  <h3 className="font-bold text-xl text-center mb-2 group-hover:text-blue-600 transition-colors">
+                    {brand.name}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground text-center mb-4 line-clamp-2">
+                    {brand.description}
+                  </p>
+
+                  {/* Rating and Product Count */}
+                  <div className="flex items-center justify-between mb-4 text-sm">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                      <span className="font-medium">{brand.rating}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-muted-foreground">
+                      <ShoppingBag className="w-4 h-4" />
+                      <span>{brand.productCount} products</span>
+                    </div>
+                  </div>
+
+                  {/* Top Categories */}
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-1 justify-center">
+                      {brand.topCategories.slice(0, 2).map((category) => (
+                        <Badge
+                          key={category}
+                          variant="outline"
+                          className="text-xs px-2 py-1"
+                        >
+                          {category}
                         </Badge>
-                      </div>
-                    )}
-
-                    {/* Brand Name */}
-                    <h3 className="font-bold text-xl text-center mb-2 group-hover:text-blue-600 transition-colors">
-                      {brand.name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-muted-foreground text-center mb-4 line-clamp-2">
-                      {brand.description}
-                    </p>
-
-                    {/* Rating and Product Count */}
-                    <div className="flex items-center justify-between mb-4 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                        <span className="font-medium">{brand.rating}</span>
-                      </div>
-                      <div className="flex items-center gap-1 text-muted-foreground">
-                        <ShoppingBag className="w-4 h-4" />
-                        <span>{brand.productCount} products</span>
-                      </div>
+                      ))}
+                      {brand.topCategories.length > 2 && (
+                        <Badge variant="outline" className="text-xs px-2 py-1">
+                          +{brand.topCategories.length - 2}
+                        </Badge>
+                      )}
                     </div>
+                  </div>
 
-                    {/* Top Categories */}
-                    <div className="mb-4">
-                      <div className="flex flex-wrap gap-1 justify-center">
-                        {brand.topCategories.slice(0, 2).map((category) => (
-                          <Badge 
-                            key={category} 
-                            variant="outline" 
-                            className="text-xs px-2 py-1"
-                          >
-                            {category}
-                          </Badge>
-                        ))}
-                        {brand.topCategories.length > 2 && (
-                          <Badge variant="outline" className="text-xs px-2 py-1">
-                            +{brand.topCategories.length - 2}
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Shop Button */}
-                    <Button 
-                      className="w-full group-hover:bg-blue-600 transition-colors"
-                      size="sm"
-                    >
-                      Shop {brand.name}
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Link>
+                  {/* Shop Button */}
+                  <Button
+                    onClick={(e) => handleShopBrand(brand.id, e)}
+                    className="w-full group-hover:bg-blue-600 transition-colors"
+                    size="sm"
+                  >
+                    Shop {brand.name}
+                  </Button>
+                </CardContent>
+              </Card>
             ))}
           </div>
 
@@ -293,6 +302,11 @@ export default function TopBrands() {
       </div>
 
       <PartnerWithUsModal open={partnerOpen} onOpenChange={setPartnerOpen} />
+      <BrandProductModal
+        open={brandModalOpen}
+        brandId={selectedBrandId}
+        onClose={() => setBrandModalOpen(false)}
+      />
     </div>
   );
 }

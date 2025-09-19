@@ -23,9 +23,10 @@ import type { SellerShopData } from '@/lib/seller-mock-data';
 interface SellerProfileSectionProps {
   seller: SellerShopData;
   onContactClick: () => void;
+  bestSellersCount?: number;
 }
 
-export default function SellerProfileSection({ seller, onContactClick }: SellerProfileSectionProps) {
+export default function SellerProfileSection({ seller, onContactClick, bestSellersCount = 0 }: SellerProfileSectionProps) {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
@@ -57,6 +58,13 @@ export default function SellerProfileSection({ seller, onContactClick }: SellerP
   const handleReport = () => {
     // This would open a report modal
     console.log('Report seller');
+  };
+
+  const handleViewBestSellers = () => {
+    document.getElementById('best-sellers-section')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
   };
 
   return (
@@ -124,7 +132,14 @@ export default function SellerProfileSection({ seller, onContactClick }: SellerP
                     <div className="text-lg font-bold text-blue-600">
                       {seller.stats.totalProducts}
                     </div>
-                    <div className="text-xs text-gray-600">Products</div>
+                    <div className="text-xs text-gray-600">
+                      Products
+                      {bestSellersCount > 0 && (
+                        <span className="block text-amber-600 font-medium">
+                          ({bestSellersCount} Best Sellers)
+                        </span>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
                 <Card className="p-3 text-center">
@@ -186,7 +201,14 @@ export default function SellerProfileSection({ seller, onContactClick }: SellerP
                 </div>
                 <div className="flex items-center gap-1">
                   <Package className="w-4 h-4" />
-                  <span>{seller.stats.totalProducts} products</span>
+                  <span>
+                    {seller.stats.totalProducts} products
+                    {bestSellersCount > 0 && (
+                      <span className="text-amber-600 font-medium">
+                        {' '}({bestSellersCount} Best Sellers)
+                      </span>
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
@@ -273,6 +295,18 @@ export default function SellerProfileSection({ seller, onContactClick }: SellerP
                 <MessageSquare className="w-5 h-5 mr-2" />
                 Contact Seller
               </Button>
+
+              {bestSellersCount > 0 && (
+                <Button
+                  onClick={handleViewBestSellers}
+                  variant="outline"
+                  className="w-full border-amber-300 text-amber-700 hover:bg-amber-50 py-3 text-lg font-semibold transition-all duration-200"
+                  size="lg"
+                >
+                  <TrendingUp className="w-5 h-5 mr-2" />
+                  View Best Sellers
+                </Button>
+              )}
               
               <div className="grid grid-cols-3 gap-2">
                 <Button

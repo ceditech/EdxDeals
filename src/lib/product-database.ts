@@ -1065,8 +1065,122 @@ export const getProductById = (productId: string): DetailedProduct | null => {
     return PRODUCT_DATABASE[productId];
   }
 
+  // Check if it's a seller product ID and generate appropriate detailed product
+  if (productId.includes('-product-')) {
+    return generateSellerProduct(productId);
+  }
+
   // Generate fallback product for missing IDs
   return generateFallbackProduct(productId);
+};
+
+// Generate detailed product for seller products
+const generateSellerProduct = (productId: string): DetailedProduct => {
+  // Extract seller ID and product index from ID like "beauty-lab-product-1"
+  const parts = productId.split('-product-');
+  const sellerId = parts[0];
+  const productIndex = parseInt(parts[1]) || 1;
+
+  // Get seller info
+  const sellerNames: Record<string, string> = {
+    'stellar-tech': 'Stellar Tech',
+    'comfort-threads': 'Comfort Threads',
+    'kitchen-gurus': 'Kitchen Gurus',
+    'beauty-lab': 'Beauty Lab',
+    'tech-innovators': 'Tech Innovators',
+    'home-harmony': 'Home Harmony',
+    'active-gear': 'Active Gear',
+    'auto-experts': 'Auto Experts',
+    'book-haven': 'Book Haven',
+    'toy-world': 'Toy World',
+    'health-plus': 'Health Plus',
+    'food-delights': 'Food Delights',
+    'techworld-store': 'TechWorld Store',
+    'home-essentials': 'Home Essentials',
+    'fashion-forward': 'Fashion Forward',
+    'fitness-pro': 'Fitness Pro',
+  };
+
+  const sellerName = sellerNames[sellerId] || 'Unknown Seller';
+
+  // Product templates based on index
+  const productTemplates = [
+    { name: 'Wireless Bluetooth Headphones', price: 89.99, oldPrice: 129.99, category: 'Electronics', rating: 4.5, reviews: 234 },
+    { name: 'Smart Fitness Tracker', price: 149.99, category: 'Electronics', rating: 4.3, reviews: 156 },
+    { name: 'Portable Power Bank 20000mAh', price: 39.99, category: 'Electronics', rating: 4.7, reviews: 89 },
+    { name: 'USB-C Fast Charging Cable', price: 19.99, category: 'Electronics', rating: 4.4, reviews: 67 },
+    { name: 'Wireless Phone Charger Pad', price: 29.99, category: 'Electronics', rating: 4.2, reviews: 123 },
+    { name: 'Ceramic Coffee Mug Set', price: 24.99, category: 'Home', rating: 4.6, reviews: 78 },
+    { name: 'Bamboo Cutting Board', price: 34.99, category: 'Home', rating: 4.8, reviews: 145 },
+    { name: 'LED Desk Lamp', price: 49.99, category: 'Home', rating: 4.5, reviews: 92 },
+    { name: 'Throw Pillow Covers Set', price: 19.99, category: 'Home', rating: 4.3, reviews: 56 },
+    { name: 'Essential Oil Diffuser', price: 59.99, category: 'Home', rating: 4.7, reviews: 134 },
+    { name: 'Cotton T-Shirt Basic', price: 14.99, category: 'Fashion', rating: 4.2, reviews: 89 },
+    { name: 'Denim Jacket Classic', price: 79.99, category: 'Fashion', rating: 4.6, reviews: 67 },
+    { name: 'Leather Belt Brown', price: 39.99, category: 'Fashion', rating: 4.4, reviews: 45 },
+    { name: 'Canvas Sneakers', price: 59.99, category: 'Fashion', rating: 4.3, reviews: 123 },
+    { name: 'Wool Scarf Winter', price: 29.99, category: 'Fashion', rating: 4.5, reviews: 78 },
+    { name: 'Moisturizing Face Cream', price: 24.99, category: 'Beauty', rating: 4.4, reviews: 156 },
+    { name: 'Natural Lip Balm Set', price: 12.99, category: 'Beauty', rating: 4.6, reviews: 89 },
+    { name: 'Vitamin C Serum', price: 34.99, category: 'Beauty', rating: 4.7, reviews: 234 },
+    { name: 'Makeup Brush Set', price: 49.99, category: 'Beauty', rating: 4.5, reviews: 167 },
+    { name: 'Organic Shampoo', price: 19.99, category: 'Beauty', rating: 4.3, reviews: 98 },
+    { name: 'Yoga Mat Premium', price: 39.99, category: 'Sports', rating: 4.6, reviews: 145 },
+    { name: 'Resistance Bands Set', price: 24.99, category: 'Sports', rating: 4.4, reviews: 87 },
+    { name: 'Water Bottle Insulated', price: 29.99, category: 'Sports', rating: 4.7, reviews: 123 },
+    { name: 'Running Shoes Lightweight', price: 89.99, category: 'Sports', rating: 4.5, reviews: 234 },
+    { name: 'Gym Towel Microfiber', price: 14.99, category: 'Sports', rating: 4.3, reviews: 56 },
+  ];
+
+  const template = productTemplates[(productIndex - 1) % productTemplates.length];
+
+  return {
+    id: productId,
+    name: template.name,
+    images: [
+      `https://placehold.co/400x400.png?text=${encodeURIComponent(template.name)}`,
+      `https://placehold.co/400x400.png?text=${encodeURIComponent(template.name)}+2`,
+      `https://placehold.co/400x400.png?text=${encodeURIComponent(template.name)}+3`,
+      `https://placehold.co/400x400.png?text=${encodeURIComponent(template.name)}+4`,
+    ],
+    price: template.price,
+    oldPrice: template.oldPrice,
+    rating: template.rating,
+    reviews: template.reviews,
+    brand: sellerName,
+    category: template.category,
+    shortDesc: `High-quality ${template.name.toLowerCase()} from ${sellerName}`,
+    fullDesc: `Experience premium quality with this ${template.name.toLowerCase()}. Carefully crafted and selected by ${sellerName} to meet the highest standards of quality and performance. This product represents the best of what ${sellerName} has to offer.`,
+    features: [
+      'Premium quality materials',
+      'Excellent craftsmanship',
+      'Reliable performance',
+      'Great value for money',
+      'Customer satisfaction guaranteed',
+      `Sold by ${sellerName}`,
+      'Fast shipping available',
+      'Professional customer support'
+    ],
+    specs: {
+      'Brand': sellerName,
+      'Category': template.category,
+      'Model': `${sellerId}-${productIndex}`,
+      'Rating': `${template.rating}/5`,
+      'Reviews': `${template.reviews} customer reviews`,
+      'Seller': sellerName,
+      'Availability': 'In Stock',
+      'Shipping': 'Fast delivery available'
+    },
+    warranty: `1-year ${sellerName} warranty with 30-day return policy`,
+    inStock: true,
+    stockCount: Math.floor(Math.random() * 50) + 10,
+    sku: `${sellerId.toUpperCase()}-${productIndex.toString().padStart(3, '0')}`,
+    weight: '200g',
+    dimensions: '6" x 4" x 2"',
+    color: 'Standard',
+    material: 'Premium Materials',
+    tags: [template.category.toLowerCase(), 'seller-product', sellerId, 'quality']
+  };
 };
 
 // Function to get related products by category

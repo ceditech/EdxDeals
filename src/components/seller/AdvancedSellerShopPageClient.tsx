@@ -6,6 +6,7 @@ import { getSellerShopData, getSellerProducts } from '@/lib/seller-mock-data';
 import SellerHeroSlider from './SellerHeroSlider';
 import SellerProfileSection from './SellerProfileSection';
 import SellerFeaturedProductsSection from './SellerFeaturedProductsSection';
+import SellerBestSellersSection from './SellerBestSellersSection';
 import DiscountModal from './DiscountModal';
 import RelatedProductsSection from './RelatedProductsSection';
 import MoreSellersSection from './MoreSellersSection';
@@ -65,6 +66,11 @@ export default function AdvancedSellerShopPageClient({ seller }: AdvancedSellerS
     return allProducts.filter(product => product.originalPrice);
   }, [allProducts]);
 
+  // Calculate best sellers count (products with rating >= 4.3)
+  const bestSellersCount = useMemo(() => {
+    return allProducts.filter(product => product.rating && product.rating >= 4.3).length;
+  }, [allProducts]);
+
   const handlePromotionClick = (promotionId: string) => {
     const promotion = sellerData.promotions.find(p => p.id === promotionId);
     if (promotion) {
@@ -83,8 +89,8 @@ export default function AdvancedSellerShopPageClient({ seller }: AdvancedSellerS
   };
 
   const handleBestSellersClick = () => {
-    // Scroll to the related products section which contains best sellers
-    document.getElementById('related-products-section')?.scrollIntoView({ behavior: 'smooth' });
+    // Scroll to the best sellers section
+    document.getElementById('best-sellers-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -97,15 +103,23 @@ export default function AdvancedSellerShopPageClient({ seller }: AdvancedSellerS
       />
 
       {/* Seller Profile Section */}
-      <SellerProfileSection 
-        seller={sellerData} 
+      <SellerProfileSection
+        seller={sellerData}
         onContactClick={() => setIsContactModalOpen(true)}
+        bestSellersCount={bestSellersCount}
       />
 
       {/* Featured Products Section */}
       <SellerFeaturedProductsSection
         products={allProducts}
         sellerName={sellerData.name}
+      />
+
+      {/* Best Sellers Section */}
+      <SellerBestSellersSection
+        sellerId={seller.id}
+        products={allProducts}
+        className="bg-white"
       />
 
       {/* Related Products & Deals Section */}
